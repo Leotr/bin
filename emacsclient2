@@ -1,0 +1,9 @@
+macos=/usr/local/bin
+if pgrep -qf 'emacs.*--daemon'; then
+  [[ $($macos/emacsclient -e '(<= 2 (length (visible-frame-list)))') = t ]] && args=-nc || args=-n
+else
+  $macos/emacs --daemon
+  args=-nc
+fi
+$macos/emacsclient $args "$@"
+open -a /Applications/Emacs.app

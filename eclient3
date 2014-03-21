@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+macos=/usr/local/Cellar/emacs/24.3
+if pgrep -qf '[eE]macs.*--daemon'; then
+  [[ $($macos/bin/emacsclient -e '(<= 2 (length (visible-frame-list)))') = t ]] &&  open -a /Applications/Emacs.app || $macos/bin/emacsclient -nc
+open -a /Applications/Emacs.app
+else
+  $macos/bin/emacs --daemon
+  $macos/bin/emacsclient -nc
+  open -a /Applications/Emacs.app
+fi
+
