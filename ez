@@ -1,2 +1,2 @@
 #!/bin/bash
-exec /usr/bin/env emacsclient -a  "" $*
+exec /usr/bin/env emacsclient --socket-name "thrice"  $*

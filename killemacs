@@ -1,0 +1,15 @@
+#!/bin/sh
+
+macos=/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS
+ebin=/usr/local/Cellar/emacs/24.3/bin
+kill=$ebin/emacsclient\ -socket-name\ 'thrice'\ -e\ '(client-save-kill-emacs)'
+openkill=$kill\
+\ open\ -a\ /Applications/Emacs.app
+smpkill=$kill\ \&\&\ echo\ "Emacs being killed"
+if pgrep -qf 'Emacs.*'; 
+then [[ $($ebin/emacsclient -socket-name "thrice" -e '(<= 2 (length (visible-frame-list)))') = t ]]
+$openkill || $smpkill
+else
+ echo "No instance of emacs running"
+fi
+

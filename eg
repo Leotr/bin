@@ -1,13 +1,10 @@
 #!/bin/sh
 
-
 macos=/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS
 ebin=/usr/local/Cellar/emacs/24.3/bin
 if pgrep -qf 'Emacs.*'; then [[ $($ebin/emacsclient -a "" -socket-name "duplicate" -e '(<= 2
- (length (visible-frame-list)))') = t ]] && args=-n || args=-nc
+ (length (visible-frame-list)))') = t ]] && args= || args=-nc
 $ebin/emacsclient $args --socket-name "duplicate" "$@"
-Open -a /Applications/Emacs.app
 else
-    $ebin/emacsclient -nc -a "" --socket-name "duplicate" "$@"
-open -a /Applications/Emacs.app
+$ebin/emacsclient -c -a "" --socket-name "duplicate" "$@"
 fi

@@ -8,12 +8,12 @@ emacsclient=/usr/local/Cellar/emacs/HEAD/bin/emacsclient
 # emacsclient=/usr/local/Cellar/emacs/24.3/bin/emacsclient
 # alternate for running from Emacs
 # emacs=/Applications/Emacs4.app/Contents/MacOS/Emacs-x86_64-10.9
-# emacsclient=/Applications/Emacs4.app/Contents/MacOS/bin-x86_64-10.9/emacsclient 
+# emacsclient=/Applications/Emacs4.app/Contents/MacOS/bin-x86_64-10.9/emacsclient
 
-if pgrep -qf '[Ee]macs'; then [[ $($emacsclient  -e '(<= 2
- (length (visible-frame-list)))') = t ]] && args=-t || args=-t
-                              $emacsclient $args "$@"
+if $emacsclient -t --socket-name "publishing" "$@" ;then
+echo "Daemon not yet started: starting up."
 else
-    $emacs --daemon 
-    $emacsclient -t "$@"
+
+$emacs -q --daemon=publishing -l /Users/leotr/.emacs.d/personal/my-ox-latex.el
+$emacsclient -t --socket-name "publishing" "$@"
 fi

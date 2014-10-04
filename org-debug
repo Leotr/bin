@@ -1,0 +1,2 @@
+#!/bin/sh
+emacs -Q -l ~/.emacs.d/org-mode/test/minimal-init.el
