@@ -1,17 +1,3 @@
 #!/bin/sh
 
-# which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
-# emacsclient -nc "$@"
-emacs=/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs
-emacsclient=/usr/local/Cellar/emacs/24.3/bin/emacsclient
-# alternate for running from Emacs
-# emacs=/Applications/Emacs4.app/Contents/MacOS/Emacs-x86_64-10.9
-# emacsclient=/Applications/Emacs4.app/Contents/MacOS/bin-x86_64-10.9/emacsclient 
-
-if pgrep -qf 'Emacs.*'; then [[ $($emacsclient  -e '(<= 2
- (length (visible-frame-list)))') = t ]] && args=-nt || args=-nt
-                             $emacsclient $args"$@"
-else
-    $emacs -daemon 
-    $emacsclient -nt "$@"
-fi
+exec emacsclient --alternate-editor="" -t "$@"

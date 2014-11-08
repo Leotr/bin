@@ -12,7 +12,7 @@ emacsclient=/usr/local/Cellar/emacs/HEAD/bin/emacsclient
 
 if pgrep -qf '[Ee]macs'; then [[ $($emacsclient  -e '(<= 2
  (length (visible-frame-list)))') = t ]] && args=-t || args=-t
-                              $emacsclient $args "$@"
+                              $emacsclient -a "" $args "$@"
 else
     $emacs --daemon 
     $emacsclient -t "$@"
