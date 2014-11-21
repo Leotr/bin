@@ -25,5 +25,5 @@ if ps $pid &>/dev/null; then
     exit 1
 fi
 
-/usr/local/bin/offlineimap -o -u ttyui & monitor $!
+/usr/bin/offlineimap -o -u ttyui & monitor $!
 

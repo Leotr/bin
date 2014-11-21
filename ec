@@ -2,8 +2,8 @@
 
 # which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
 # emacsclient -nc "$@"
-emacs=/usr/local/Cellar/emacs/HEAD/bin/emacs
-emacsclient=/usr/local/Cellar/emacs/HEAD/bin/emacsclient
+emacs=/usr/bin/emacs
+emacsclient=/usr/bin/emacsclient
 # emacs=/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs
 # emacsclient=/usr/local/Cellar/emacs/24.3/bin/emacsclient
 # alternate for running from Emacs
