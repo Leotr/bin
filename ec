@@ -10,10 +10,6 @@ emacsclient=/usr/bin/emacsclient
 # emacs=/Applications/Emacs4.app/Contents/MacOS/Emacs-x86_64-10.9
 # emacsclient=/Applications/Emacs4.app/Contents/MacOS/bin-x86_64-10.9/emacsclient 
 
-if pgrep -qf '[Ee]macs'; then [[ $($emacsclient  -e '(<= 2
- (length (visible-frame-list)))') = t ]] && args=-t || args=-t
-                              $emacsclient -a "" $args "$@"
-else
-    $emacs --daemon 
-    $emacsclient -t "$@"
-fi
+
+    $emacsclient -nc -a "" "$@"
+
